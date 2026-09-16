@@ -1,0 +1,413 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #f1ebe0;
+  --color-surface: #faf7f1;
+  --color-raised: #efe8db;
+  --color-fg: #1a1612;
+  --color-muted: #6a6258;
+  --color-subtle: #8a8278;
+  --color-primary: #1f3d5c;
+  --color-primary-fg: #faf7f1;
+  --color-ink: #1a1612;
+  --color-paper: #faf7f1;
+  --color-border: color-mix(in oklab, var(--color-fg) 14%, transparent);
+  --color-ring: #1f3d5c;
+  --color-ok: #2d5a3d;
+  --color-ok-fg: #f4faf6;
+  --color-ok-soft: #dce8e0;
+  --color-warn: #7a4e1d;
+  --color-warn-soft: #f3e6d4;
+  --color-danger: #7f2d2d;
+  --font-sans: "Noto Sans Tamil", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Source Serif 4", "Noto Sans Tamil", Georgia, serif;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --motion-quick: 150ms;
+  --motion-fast: 250ms;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+  }
+}
+
+:root {
+  --paper-w: 210mm;
+  --paper-h: 297mm;
+}
+
+/* ===== Print page numbers (Chrome / Edge 131+) ===== */
+@page {
+  size: A4;
+  margin: 15mm 12mm 20mm 15mm;
+  @top-center {
+    content: "";
+  }
+  @bottom-center {
+    content: "பக்கம் " counter(page) " / " counter(pages);
+    font-family: "Noto Sans Tamil", "Latha", "Tamil MN", Arial, sans-serif;
+    font-size: 10pt;
+    font-weight: bold;
+    color: #000;
+  }
+}
+
+/* ===== Settlement document (print-faithful) ===== */
+.settlement-doc {
+  font-family: "Noto Sans Tamil", "Latha", "Tamil MN", "Vijaya", Arial, sans-serif;
+  font-size: 13pt;
+  line-height: 1.7;
+  color: #000;
+}
+
+.settlement-doc .a4-page {
+  width: var(--paper-w, 210mm);
+  min-height: var(--paper-h, 297mm);
+  padding: 20mm 18mm 20mm 22mm;
+  margin: 0 auto 20px;
+  background: #fff;
+  box-shadow: 0 8px 28px color-mix(in oklab, var(--color-ink) 14%, transparent);
+  position: relative;
+}
+
+.settlement-doc .doc-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 14pt;
+  margin-bottom: 20px;
+  text-decoration: underline;
+}
+
+.settlement-doc .parties-section {
+  margin-bottom: 15px;
+}
+
+.settlement-doc .party-line {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.settlement-doc .party-label-left {
+  width: 45%;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.settlement-doc .party-colon {
+  width: 5%;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.settlement-doc .party-label-right {
+  width: 50%;
+  text-align: left;
+}
+.settlement-doc .party-label-right p {
+  margin: 0;
+  line-height: 1.5;
+}
+.settlement-doc .party-mgmt {
+  font-weight: bold;
+}
+.settlement-doc .company-address {
+  margin: 0;
+  padding: 0;
+}
+.settlement-doc .company-address p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.settlement-doc .rep-row {
+  display: flex;
+  align-items: flex-start;
+  margin: 10px 0;
+}
+.settlement-doc .rep-left {
+  width: 45%;
+}
+.settlement-doc .rep-left p {
+  margin: 1px 0;
+  line-height: 1.5;
+}
+.settlement-doc .rep-mid {
+  width: 5%;
+  text-align: center;
+}
+.settlement-doc .rep-right {
+  width: 50%;
+}
+.settlement-doc .rep-right p {
+  margin: 1px 0;
+  line-height: 1.5;
+}
+
+.settlement-doc .underline-text {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.settlement-doc .para {
+  text-align: justify;
+  margin: 12px 0;
+  text-indent: 35px;
+}
+.settlement-doc .para-no-indent {
+  text-align: justify;
+  margin: 12px 0;
+}
+.settlement-doc .numbered {
+  text-indent: 0;
+  padding-left: 35px;
+  position: relative;
+}
+.settlement-doc .numbered::before {
+  content: attr(data-num);
+  position: absolute;
+  left: 0;
+}
+
+.settlement-doc .terms-section {
+  margin: 15px 0;
+}
+.settlement-doc .terms-title {
+  text-decoration: underline;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.settlement-doc .terms-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+}
+.settlement-doc .terms-table td {
+  padding: 5px 10px;
+  border: none;
+  vertical-align: top;
+}
+.settlement-doc .terms-table td:first-child {
+  width: 55%;
+  padding-left: 35px;
+}
+.settlement-doc .terms-table td:last-child {
+  width: 45%;
+  text-align: left;
+}
+.settlement-doc .terms-table .total-row td {
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+  font-weight: bold;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.settlement-doc .amount-words-line {
+  text-align: center;
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+.settlement-doc .signatures {
+  margin-top: 35px;
+  display: flex;
+  justify-content: space-between;
+}
+.settlement-doc .sign-box {
+  width: 45%;
+  text-align: center;
+}
+
+.settlement-doc .witness-section {
+  margin-top: 0;
+  line-height: 2;
+}
+.settlement-doc .witness-section h4 {
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+.settlement-doc .witness-section p {
+  margin: 5px 0;
+}
+
+.settlement-doc .copies-section {
+  margin-top: 25px;
+  font-size: 12pt;
+}
+.settlement-doc .copies-section p {
+  margin: 3px 0;
+}
+.settlement-doc .copies-section .copies-title {
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 6px;
+}
+.settlement-doc .copies-section .copy-item {
+  position: relative;
+  margin-left: 35px;
+  padding-left: 30px;
+}
+.settlement-doc .copies-section .copy-item::before {
+  content: attr(data-num);
+  position: absolute;
+  left: 0;
+}
+
+.settlement-doc .blank.blank-wrap {
+  display: inline;
+  min-width: 0;
+  text-align: left;
+  padding: 0 2px;
+}
+
+.settlement-doc .receipt-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 14pt;
+  margin-bottom: 25px;
+  text-decoration: underline;
+}
+.settlement-doc .receipt-body {
+  text-align: justify;
+  line-height: 2.2;
+}
+.settlement-doc .receipt-footer {
+  margin-top: 50px;
+}
+.settlement-doc .receipt-footer p {
+  margin: 8px 0;
+}
+
+.settlement-doc .blank {
+  display: inline-block;
+  min-width: 80px;
+  border-bottom: 1px solid #333;
+  text-align: center;
+  color: #000;
+  font-weight: bold;
+  padding: 0 5px;
+}
+.settlement-doc .blank:focus {
+  outline: none;
+  background: #fffacd;
+}
+.settlement-doc .words-blank {
+  display: inline;
+  font-weight: bold;
+  color: #000;
+}
+
+body.content-edit-mode .settlement-doc .template-editable {
+  outline: 1px dashed #c47a22;
+  outline-offset: 2px;
+  background: rgba(255, 247, 230, 0.45);
+  cursor: text;
+}
+body.content-edit-mode .settlement-doc .template-editable:focus {
+  outline: 2px solid #c47a22;
+  background: #fffaf0;
+}
+
+.doc-viewport {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 820px) {
+  .settlement-doc {
+    zoom: 0.48;
+  }
+}
+
+@media print {
+  html,
+  body {
+    background: white !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: var(--paper-w, 210mm) !important;
+  }
+
+  .app-chrome {
+    display: none !important;
+  }
+
+  .doc-viewport {
+    overflow: visible !important;
+  }
+
+  .settlement-doc {
+    zoom: 1 !important;
+  }
+
+  .settlement-doc .a4-page {
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 10mm 10mm 10mm 12mm !important;
+    width: var(--paper-w, 210mm) !important;
+    min-height: auto !important;
+    max-width: var(--paper-w, 210mm) !important;
+    page-break-after: always;
+    overflow: visible !important;
+  }
+
+  .settlement-doc .a4-page:last-of-type {
+    page-break-after: auto;
+  }
+
+  table,
+  .signatures,
+  .witness-section,
+  .copies-section,
+  .receipt-footer,
+  .doc-title,
+  .receipt-title {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  p {
+    orphans: 2;
+    widows: 2;
+  }
+
+  .blank {
+    border-bottom: 1px solid #000 !important;
+    color: #000 !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

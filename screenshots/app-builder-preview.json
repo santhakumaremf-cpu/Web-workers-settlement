@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Worker Settlement",
+      "hasCanvas": false,
+      "bodyTextLen": 6615,
+      "bodyTextHash": "169b9683d7da556728cbc4fdb2ab8722517c59c2f746dbcdc1a04957c143ad91",
+      "bodyTextPrefix": "RASIPURAM · NAMAKKAL திருவள்ளுவர் டெக்ஸ்டைல்ஸ் Worker settlement",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Worker Settlement",
+      "hasCanvas": false,
+      "bodyTextLen": 6615,
+      "bodyTextHash": "169b9683d7da556728cbc4fdb2ab8722517c59c2f746dbcdc1a04957c143ad91",
+      "bodyTextPrefix": "RASIPURAM · NAMAKKAL திருவள்ளுவர் டெக்ஸ்டைல்ஸ் Worker settlement",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
